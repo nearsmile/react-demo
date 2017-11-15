@@ -1,7 +1,5 @@
-// import React from 'react';
 import React, { Component, createElement } from 'react';
 import { render } from 'react-dom';
-// import { ul } from './component/one.js';
 
 let list = [
   { done: false, name: 1 },
