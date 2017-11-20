@@ -4,6 +4,7 @@ import { LikeButton } from './likeButton';
 // import { LikeButton } from './likeButton2';
 import { AlertString } from './function';
 import { MapList } from './render_list';
+import CommentApp from './comment/CommentApp';
 
 class App extends Component {
   render () {
@@ -13,6 +14,7 @@ class App extends Component {
         <LikeButton words={{ likedText:'已赞赞', unLikedText:'赞赞'}} />
         <AlertString/>
         <MapList/>
+        <CommentApp/>
       </div>
     )
   }
