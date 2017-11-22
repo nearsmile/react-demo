@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import {Comment} from './Comment';
+import PropTypes from 'prop-types';
+
 class CommentList extends Component {
-  /* static defaultProps () {
-    comments: []
+  /* static defaultProps = {
+    comments: [{userName: "3242", content: "234"}]
   } */
   constructor (props) {
     super(props);
     this.state = {
       comments: [{userName: "3242", content: "234"}]
     }
+
   }
 
   render () {
@@ -29,6 +32,15 @@ class CommentList extends Component {
       </div>
     )
   }
+
+  /* PropTypes = {
+    comments: PropTypes.array.isRequired
+  } */
 }
+
+CommentList.defaultProps = {
+  comments: [{userName: "3242", content: "234"}]
+}
+  
 
 export default CommentList

@@ -63,9 +63,39 @@
 
 - 当某个状态被多个组件依赖或者影响的时候，就把该状态提升到这些组件的最近公共父组件中去管理，用 props 传递数据或者函数来管理这种依赖或着影响的行为。
 
-### 挂载阶段的组件生命周期
+### 组件生命周期
 
 - React.js 将组件渲染，并且构造 DOM 元素然后塞入页面的过程称为组件的挂载
-- React.js 会在组件的 render 之前调用 componentWillMount，在 DOM 元素塞入页面以后调用 componentDidMount，都是可以像 render 方法一样自定义在组件的内部
-- 在组件删除之前 React.js 会调用组件定义的 componentWillUnmount
-- 一般会把组件的 state 的初始化工作放在 constructor 里面去做；在 componentWillMount 进行组件的启动工作，例如 Ajax 数据拉取、定时器的启动；组件从页面上销毁的时候，有时候需要一些数据的清理，例如定时器的清理，就会放在 componentWillUnmount 里面去做。
+- React.js 会在组件的 render 之前调用 `componentWillMount`，在 DOM 元素塞入页面以后调用 `componentDidMount`，都是可以像 render 方法一样自定义在组件的内部
+- 在组件删除之前 React.js 会调用组件定义的 `componentWillUnmount`
+- 一般会把组件的 state 的初始化工作放在 `constructor` 里面去做；在 `componentWillMount` 进行组件的启动工作，例如 Ajax 数据拉取、定时器的启动；组件从页面上销毁的时候，有时候需要一些数据的清理，例如定时器的清理，就会放在 `componentWillUnmount` 里面去做。
+- `shouldComponentUpdate(nextProps, nextState)`：你可以通过这个方法控制组件是否重新渲染。如果返回 false 组件就不会重新渲染。这个生命周期在 React.js 性能优化上非常有用。
+- `componentWillReceiveProps(nextProps)`：组件从父组件接收到新的 props 之前调用。
+- `componentWillUpdate()`：组件开始重新渲染之前调用。
+- `componentDidUpdate()`：组件重新渲染并且把更改变更到真实的 DOM 以后调用。
+- Virtual DOM 算法, 包括几个步骤:
+  - 用 JavaScript 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中
+  - 当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异
+  - 把2所记录的差异应用到步骤1所构建的真正的DOM树上，视图就更新了
+
+### 组件明细
+
+- 所有嵌套在组件中的 JSX 结构都可以在组件内部通过 props.children 获取到一个数组
+- 一个原则：能不用 ref 就不用
+- 元素加了一个 ref 属性，这个属性值是一个函数
+- 给 `dangerouslySetInnerHTML`传入一个对象，这个对象的 __html 属性值就相当于元素的 innerHTML
+- `style` 接受一个对象，这个对象里面是这个元素的 CSS 属性键值对，原来 CSS 属性中带 - 的元素都必须要去掉 - 换成驼峰命名，如 font-size 换成 fontSize，text-align 换成 textAlign。
+  - 用对象作为 style 方便我们动态设置元素的样式。我们可以用 props 或者 state 中的数据生成样式对象再传给元素
+- 给组件的配置参数加上类型验证
+  - 组件参数验证在构建大型的组件库的时候相当有用，可以帮助我们迅速定位这种类型错误，让我们组件开发更加规范。
+  - 组件到底能够接受什么参数，什么参数是可选的，什么参数是必选的
+  - 组件的私有方法都用 _ 开头，所有事件监听的方法都用 handle 开头。把事件监听方法传给组件的时候，属性名用 on 开头。
+  - 组件的内容编写顺序如下:
+    - static 开头的类属性，如 defaultProps、propTypes
+    - 构造函数，constructor
+    - getter/setter
+    - 组件生命周期
+    - _ 开头的私有方法
+    - 事件监听方法，handle*
+    - render*开头的方法，有时候 render() 方法里面的内容会分开到不同函数里面进行，这些函数都以 render* 开头
+    - render() 方法
