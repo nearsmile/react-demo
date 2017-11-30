@@ -40,6 +40,14 @@ class CommentApp extends Component {
     })
   }
 
+  handleDeleteComment(index) {
+    // console.log(`%c${index}`, 'color: green')
+    const comments = this.state.comments
+    comments.splice(index, 1)
+    this.setState({ comments })
+    this._saveComments(comments)
+  }
+
   handleSubmit (comment) {
     // console.log(`comment: `, comment)
     if (!comment) return
@@ -53,11 +61,11 @@ class CommentApp extends Component {
 
   render () {
     return (
-      <div className='comment-wrapper' style={{border: '1px dashed #999'}}>
+      <div className='comment-wrapper'>
         {this.state.show ? <Title/> : null}
         <button onClick={this.handleTitle.bind(this)}>{!this.state.show ? '显示' : '隐藏'}标题</button>
         <CommentInput onSubmit={this.handleSubmit.bind(this)}/>
-        <CommentList comments={this.state.comments}/>
+        <CommentList comments={this.state.comments} onDeleteComment={this.handleDeleteComment.bind(this)} />
         {/* <CommentList/> */}
       </div>
     )

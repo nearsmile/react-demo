@@ -14,13 +14,17 @@ class CommentList extends Component {
   }
 
   handleDeleteComment(index) {
-    
+    console.log(`%c${index}`, 'color: red')
+    if (this.props.onDeleteComment) {
+      this.props.onDeleteComment(index)
+    }
+    // this.
   }
 
   render () {
     const { comments } = this.props
     return (
-      <div>
+      <div className="comment-content">
         {/* { this.props.comments && this.state.comments.map((comment, i) => (<Comment comment={comment} key={i}/>))} */}
         {comments.map((comment, i) => {
           /* return (

@@ -5,6 +5,22 @@
 }
 
 .comment-wrapper {
-  border: 1px dashed #f1f1f1;
   padding: 10px;
+}
+
+/* .comment-content {
+  margin-top: 60px;
+} */
+
+.comment {
+  border: 1px solid #eee;
+  width: 50%;
+  float: left;
+}
+
+.comment-delete {
+  padding: 0 2%;
+  color: #fff;
+  float: right;
+  background-color: rgb(162, 8, 8);
 }
