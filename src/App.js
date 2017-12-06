@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import DemoReducer from './components/demo2'
+import DemoReducer from './components/demo3'
 
 class App extends Component {
   render() {

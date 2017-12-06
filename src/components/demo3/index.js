@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import Content from './Content'
-import { Provider, createStore, themeReducer } from './react-redux.2';
+// import { Provider, createStore, themeReducer } from './react-redux.2';
+import { themeReducer } from './react-redux.2';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
 const store = createStore(themeReducer)
 

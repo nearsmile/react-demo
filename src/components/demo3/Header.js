@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { connect } from './react-redux'
+import { connect } from 'react-redux'
 // 除了 props 什么也不依赖，它是一个 Pure Component，然后通过 connect 取得数据。
 class Header extends Component {
   static propTypes = {
